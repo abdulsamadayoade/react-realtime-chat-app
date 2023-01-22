@@ -4,6 +4,8 @@ import { auth } from "./firebase-config";
 import Cookies from "universal-cookie";
 import Auth from "./components/Auth";
 import Header from "./components/Header";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const cookies = new Cookies();
 
@@ -14,10 +16,12 @@ function App() {
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
+    toast.success("Signed out successfully");
   };
 
   return (
     <>
+      <ToastContainer />
       <Header />
       <Auth isAuth={isAuth} setIsAuth={setIsAuth} />
       {isAuth && (

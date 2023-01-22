@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { auth, authProvider } from "../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import Cookies from "universal-cookie";
+import { toast } from "react-toastify";
 
 const cookies = new Cookies();
 
@@ -12,6 +12,7 @@ const Auth = ({isAuth, setIsAuth}) => {
       const response = await signInWithPopup(auth, authProvider);
       cookies.set("auth-token", response?.user?.refreshToken);
       setIsAuth(response?.user?.refreshToken);
+      toast.success("Signed in successfully");
     } catch (e) {
       alert("Something went wrong, try login again");
     }
