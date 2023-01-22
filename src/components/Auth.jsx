@@ -5,8 +5,7 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-const Auth = () => {
-  const [isAuth, setIsAuth] = useState(cookies?.get("auth-token"));
+const Auth = ({isAuth, setIsAuth}) => {
 
   const handleSignIn = async () => {
     try {
